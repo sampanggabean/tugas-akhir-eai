@@ -1,6 +1,16 @@
 import requests
 import csv
 from bs4 import BeautifulSoup
+from datetime import date, timedelta, datetime
+
+def job_is_timely(job):
+    today = date.today()
+    delta = timedelta(days=60)
+
+    two_months_ago = today - delta
+    datetime_format = '%Y-%m-%dT%H:%M:%S.%f%z'
+    datetime_str = datetime.strptime(job['created_at'], datetime_format)
+    return datetime_str.date() > two_months_ago
 
 def scrape_jobs_on_page(query, page):
     BASE_URL = "https://karir.com/search"
@@ -24,7 +34,8 @@ def scrape_jobs_on_page(query, page):
         job['source'] = 'karir.com'
         job['url'] = 'https://karir.com' + data_container.a['href']
 
-        jobs.append(job)
+        if job_is_timely(job):
+            jobs.append(job)
 
     return jobs
 
