@@ -38,7 +38,6 @@ def scrape_jobs_on_page(query, page):
             job['source'] = 'jobstreet.co.id'
             job['url'] = 'https://www.jobstreet.co.id/{}'.format(div.find('a', attrs={'class' : 'jdlu994 jdlu996 jdlu999 y44q7i2 z1s6m00 z1s6m0f _1hbhsw6h'})['href'])
 
-            print(job)
             if job_is_timely(job):
                 jobs.append(job)
             
