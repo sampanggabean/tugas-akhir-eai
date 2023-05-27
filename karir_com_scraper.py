@@ -29,7 +29,10 @@ def scrape_jobs_on_page(query, page):
 
         job['position'] = next(data_container.a.stripped_strings)
         job['created_at'] = data_container.time['datetime']
-        job['location'] = next(data_container.find("span", {"class" : "tdd-location"}).stripped_strings).split(" - ")[1]
+        try:
+            job['location'] = next(data_container.find("span", {"class" : "tdd-location"}).stripped_strings).split(" - ")[1]
+        except:
+            job['location'] = next(data_container.find("span", {"class" : "tdd-location"}).stripped_strings).split(" - ")[0]
         job['company'] = next( data_container.div.stripped_strings)
         job['source'] = 'karir.com'
         job['url'] = 'https://karir.com' + data_container.a['href']
