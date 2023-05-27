@@ -57,6 +57,8 @@ def scrape_jobs(query):
         page += 1
         scraped_jobs = scrape_jobs_on_page(query, page)
         jobs += scraped_jobs
+        if page >= 8:
+            break
     
     return jobs
 
