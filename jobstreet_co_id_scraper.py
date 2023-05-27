@@ -36,7 +36,7 @@ def scrape_jobs_on_page(query, page):
             job['location'] = next(div.find('span', attrs={'class' : 'z1s6m00 _1hbhsw64y y44q7i0 y44q7i3 y44q7i21 y44q7ih'}).stripped_strings)
             job['company'] = next(div.find('span', attrs={'class' : 'z1s6m00 bev08l1 _1hbhsw64y _1hbhsw60 _1hbhsw6r'}).stripped_strings)
             job['source'] = 'jobstreet.co.id'
-            job['url'] = 'https://www.jobstreet.co.id/{}'.format(div.find('a', attrs={'class' : 'jdlu994 jdlu996 jdlu999 y44q7i2 z1s6m00 z1s6m0f _1hbhsw6h'})['href'])
+            job['url'] = 'https://www.jobstreet.co.id{}'.format(div.find('a', attrs={'class' : 'jdlu994 jdlu996 jdlu999 y44q7i2 z1s6m00 z1s6m0f _1hbhsw6h'})['href'])
 
             if job_is_timely(job):
                 jobs.append(job)
