@@ -840,7 +840,7 @@
       <schema_name/>
     </partitioning>
     <connection>CloudSQL</connection>
-    <commit>20</commit>
+    <commit>1</commit>
     <lookup>
       <schema>api</schema>
       <table>api_job</table>
@@ -877,7 +877,7 @@
       <schema_name/>
     </partitioning>
     <connection>CloudSQL</connection>
-    <commit>20</commit>
+    <commit>1</commit>
     <update_bypassed>Y</update_bypassed>
     <lookup>
       <schema>api</schema>
@@ -1556,7 +1556,7 @@
     </partitioning>
     <connection>CloudSQL</connection>
     <skip_lookup>N</skip_lookup>
-    <commit>100</commit>
+    <commit>1</commit>
     <use_batch>N</use_batch>
     <error_ignored>N</error_ignored>
     <ignore_flag_field/>
