@@ -8,3 +8,4 @@ class Job(models.Model):
     company = models.TextField() 
     source = models.TextField() 
     url = models.TextField()
+    query = models.CharField(max_length=100)

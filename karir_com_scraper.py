@@ -36,7 +36,7 @@ def scrape_jobs_on_page(query, page):
         job['company'] = next( data_container.div.stripped_strings)
         job['source'] = 'karir.com'
         job['url'] = 'https://karir.com' + data_container.a['href']
-        job['query'] = 'query'
+        job['query'] = query
 
         if job_is_timely(job):
             jobs.append(job)
