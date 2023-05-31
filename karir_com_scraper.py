@@ -57,7 +57,7 @@ def scrape_jobs(query):
     return jobs
 
 def write_to_csv(jobs):
-    with open('/home/sampanggabean22/scraping/result.txt', mode='w', newline="") as result_csv:
+    with open('result.txt', mode='w', newline="") as result_csv:
         column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url', 'query']
 
         result_writer = csv.writer(result_csv, delimiter=',')
