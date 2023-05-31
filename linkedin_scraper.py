@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import date, timedelta, datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from pyvirtualdisplay import Display
 import time
 
 def job_is_timely(job):
@@ -19,7 +20,17 @@ def scrape_jobs(query):
     jobs = []
     BASE_URL = 'https://www.linkedin.com/jobs/search?keywords={}&location=Indonesia'.format(query)
 
-    wd = webdriver.Chrome(executable_path='./chromedriver.exe')
+    display = Display(visible=0, size=(1920, 1080))  
+    display.start()
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("-disable-notifications")
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument("--window-size=1920x1080")
+
+    wd = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
     wd.get(BASE_URL)
 
     max_page = 40 # could be wrong
@@ -62,7 +73,7 @@ def scrape_jobs(query):
         except:
             pass
     
-    print(len(jobs))
+    print('{}: {}'.format(query, len(jobs)))
     return jobs
 
 def write_to_csv(jobs):
