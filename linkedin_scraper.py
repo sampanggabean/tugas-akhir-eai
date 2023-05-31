@@ -30,7 +30,7 @@ def scrape_jobs(query):
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument("--window-size=1920x1080")
 
-    wd = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
+    wd = webdriver.Chrome(executable_path='/home/sampanggabean22/scraping/chromedriver', chrome_options=chrome_options)
     wd.get(BASE_URL)
 
     max_page = 40 # could be wrong
@@ -67,9 +67,12 @@ def scrape_jobs(query):
             job['company'] = job_container.find_element(By.CLASS_NAME, 'base-search-card__subtitle').get_attribute('innerText')
             job['source'] = 'linkedin.com/jobs'
             job['url'] = job_container.find_element(By.TAG_NAME, 'a').get_attribute('href')
+            job['query'] = query
 
             if job_is_timely(job):
                 jobs.append(job)
+            
+            
         except:
             pass
     
@@ -77,8 +80,8 @@ def scrape_jobs(query):
     return jobs
 
 def write_to_csv(jobs):
-    with open('result.txt', mode='a', newline="") as result_csv:
-        column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url']
+    with open('/home/sampanggabean22/scraping/result.txt', mode='a', newline="") as result_csv:
+        column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url', 'query']
 
         result_writer = csv.writer(result_csv, delimiter=',')
 

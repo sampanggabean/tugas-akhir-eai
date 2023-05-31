@@ -37,6 +37,7 @@ def scrape_jobs_on_page(query, page):
             job['company'] = next(div.find('span', attrs={'class' : 'z1s6m00 bev08l1 _1hbhsw64y _1hbhsw60 _1hbhsw6r'}).stripped_strings)
             job['source'] = 'jobstreet.co.id'
             job['url'] = 'https://www.jobstreet.co.id{}'.format(div.find('a', attrs={'class' : 'jdlu994 jdlu996 jdlu999 y44q7i2 z1s6m00 z1s6m0f _1hbhsw6h'})['href'])
+            job['query'] = query
 
             if job_is_timely(job):
                 jobs.append(job)
@@ -57,14 +58,12 @@ def scrape_jobs(query):
         page += 1
         scraped_jobs = scrape_jobs_on_page(query, page)
         jobs += scraped_jobs
-        if page >= 8:
-            break
-    
+            
     return jobs
 
 def write_to_csv(jobs):
-    with open('result.txt', mode='a', newline="") as result_csv:
-        column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url']
+    with open('/home/sampanggabean22/scraping/result.txt', mode='a', newline="") as result_csv:
+        column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url', 'query']
 
         result_writer = csv.writer(result_csv, delimiter=',')
 
