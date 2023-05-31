@@ -36,6 +36,7 @@ def scrape_jobs_on_page(query, page):
         job['company'] = next( data_container.div.stripped_strings)
         job['source'] = 'karir.com'
         job['url'] = 'https://karir.com' + data_container.a['href']
+        job['query'] = 'query'
 
         if job_is_timely(job):
             jobs.append(job)
@@ -56,8 +57,8 @@ def scrape_jobs(query):
     return jobs
 
 def write_to_csv(jobs):
-    with open('result.txt', mode='w', newline="") as result_csv:
-        column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url']
+    with open('/home/sampanggabean22/scraping/result.txt', mode='w', newline="") as result_csv:
+        column_headers = ['position', 'created_at', 'location', 'company', 'source', 'url', 'query']
 
         result_writer = csv.writer(result_csv, delimiter=',')
         result_writer.writerow(column_headers)
