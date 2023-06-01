@@ -11,6 +11,7 @@ def getJobData(request):
 
     # check query params
     queries = request.GET.get('query')
+    queries = queries.split(',')
     date_mode = request.GET.get('date_mode')
     date = request.GET.get('date')
     location = request.GET.get('location')
@@ -18,8 +19,7 @@ def getJobData(request):
 
     jobs = Job.objects.all()
 
-    if queries:
-        queries = queries.split(',')
+    if len(queries):
         q_objects = Q()
         for query in queries:
             q_objects |= Q(query__icontains=query)
