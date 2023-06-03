@@ -66,7 +66,10 @@ def scrape_jobs(query):
             job['location'] = job_container.find_element(By.CLASS_NAME, 'job-search-card__location').get_attribute('innerText').split(',')[0]
             job['company'] = job_container.find_element(By.CLASS_NAME, 'base-search-card__subtitle').get_attribute('innerText')
             job['source'] = 'linkedin.com/jobs'
-            job['url'] = job_container.find_element(By.TAG_NAME, 'a').get_attribute('href')
+            try:
+                job['url'] = job_container.find_element(By.TAG_NAME, 'a').get_attribute('href').split('?')[0]
+            except:
+                job['url'] = job_container.find_element(By.TAG_NAME, 'a').get_attribute('href')
             job['query'] = query
 
             if job_is_timely(job):
