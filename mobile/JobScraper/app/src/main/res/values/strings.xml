@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Job Scraper</string>
+    <string name="filter">Filter</string>
+    <string name="programmer">Programmer</string>
+    <string name="data">Data</string>
+    <string name="network">Network</string>
+    <string name="cyber_security">Cyber Security</string>
+    <string name="before">Before</string>
+    <string name="location">Location</string>
+    <string name="company">Company</string>
+    <string name="created_at">Posted at %s</string>
+    <string name="company_text">Working for %s</string>
+</resources>

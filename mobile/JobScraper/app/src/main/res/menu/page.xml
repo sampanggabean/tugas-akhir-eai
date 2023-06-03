@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/prev_page"
+        android:title="previous"
+        android:icon="@drawable/baseline_navigate_before_24"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/page_number"
+        android:title="1"
+        app:showAsAction="always"
+        android:enabled="false"/>
+    <item
+        android:id="@+id/next_page"
+        android:title="next"
+        android:icon="@drawable/baseline_navigate_next_24"
+        app:showAsAction="ifRoom"/>
+</menu>
